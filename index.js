@@ -33,6 +33,7 @@ app
 		});
 		db.close();
 });*/
+
 app.get('/test',(req,res)=>{
 	res.send("Hello");
 });
