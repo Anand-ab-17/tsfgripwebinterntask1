@@ -1,4 +1,5 @@
 body {
+	background-color:#EFE2BA;
     
 }
 button
@@ -6,11 +7,12 @@ button
 	background-color:white;
 	border:0px;
 
+
 }
 #header
 {
 
-    color:violet;
+    color:purple;
     text-align:center;
 }
 #hc
@@ -21,15 +23,15 @@ button
 {
     border:0px;
     background-color:white;
-    color:violet;
+    color:Purple;
     text-align:left;
     position:absolute;
     left:10px;
 }
 #lbut
 {
-	background-color:white;
-	color:violet;
+	background-color:yellow;
+	color:Green;
 	border:0px;
 }
 

@@ -100,7 +100,7 @@ function viewt(ip,from)
 	if(document.getElementById("pop"))                      {                                                                  document.getElementById("pop").remove();        }
 	let pop=document.createElement('div');
 	pop.id='pop';
-	pop.setAttribute("style","position:fixed;width:"+w-20+"px;background-color:white;overflow-x:scroll;overflow-y:scroll;top:50px;border:2px solid lightgreen;");
+	pop.setAttribute("style","position:fixed;width:"+w-20+"px;background-color:silver;overflow-x:scroll;overflow-y:scroll;top:50px;border:2px solid lightgreen;");
 	let abut=document.createElement("button");                 abut.id="abut";                                            abut.innerHTML="Close";                                    abut.onclick=function()
         {                                                                  document.getElementById("pop").remove();           }
 	pop.appendChild(abut);
@@ -200,7 +200,7 @@ function tamt(ip,from)
 
 
 			 sbut.id="sbut";
-			 sbut.setAttribute("style","background-color:lightgreen;border:0px;color:violet;");
+			 sbut.setAttribute("style","background-color:lightgreen;border:0px;color:green;");
 			 sbut.innerHTML="Send";
 				 document.getElementById('center').appendChild(sbut);
 
@@ -271,10 +271,10 @@ function tamt(ip,from)
 			 }
 		 }
 	        c.style.border="1px solid green";    
-		c.style.backgroundColor="white";     
+		c.style.backgroundColor="yellow";     
 		let name=document.createElement("p");  
 		name.innerHTML="Name: "+(ip[i].name);                    
-		let bal=document.createElement("p");   
+		let bal=document.createElement("h6");   
 		bal.innerHTML="Balance: "+ip[i].bal;    
 		let mail=document.createElement("p");   
 		mail.innerHTML="Mail: "+ip[i].mail;
@@ -292,9 +292,6 @@ function tamt(ip,from)
         //      c.appendChild(no);
         //      c.appendChild(document.createElement("br"));
                 c.appendChild(mail);
-        //      c.appendChild(document.createElement("br"));
-        //      c.appendChild(bal);
-
                 div.appendChild(c);
 		
 	
@@ -304,8 +301,7 @@ function tamt(ip,from)
 		pop.appendChild(div);
 	}
 	pop.appendChild(center);
-	pop.setAttribute("style","position:absolute;width:320px;left:"+(w-320)/2+"px;background-color:white;top:50px;border:2px solid lightgreen;border-radius:10%");
-        //pop.innerHTML="SGJJHHGJHDUUU";
+	pop.setAttribute("style","position:absolute;width:320px;left:"+(w-320)/2+"px;background-color:silver;top:50px;border:2px solid lightgreen;border-radius:10%");
 	document.body.appendChild(pop);
 	document.getElementById("abut").setAttribute("style","position:relative;left:"+320-document.getElementById('abut').offsetWidth+"px;");
 	
@@ -315,13 +311,13 @@ function tamt(ip,from)
 function viewone(ip)
 {
 	dlt();
-	let content=document.getElementById("content");            let h=document.createElement("h3");                        h.innerHTML="Customer Info";                      
+	let content=document.getElementById("content");            let h=document.createElement("h1");                        h.innerHTML="Customer Info";                      
 	h.style.textAlign="center";                                h.style.color="violet";                                    content.appendChild(h);
-	let c=document.createElement("div");                       c.style.border="1px solid green";                          c.style.backgroundColor="white";                  
-	let name=document.createElement("h4");                     name.innerHTML="Name: "+(ip.name);                
-	let bal=document.createElement("h5");                      bal.innerHTML="Balance: "+ip.bal;                 
-	let mail=document.createElement("h5");                     mail.innerHTML="Mail: "+ip.mail;
-        let no=document.createElement("h5");
+	let c=document.createElement("div");                       c.style.border="1px solid green";                          c.style.backgroundColor="silver";                  
+	let name=document.createElement("h2");                     name.innerHTML="Name: "+(ip.name);                
+	let bal=document.createElement("h1");                      bal.innerHTML="Balance: "+ip.bal;                 
+	let mail=document.createElement("h3");                     mail.innerHTML="Mail: "+ip.mail;
+        let no=document.createElement("h3");
 	no.innerHTML="Account no: "+ip.no;   
 	let center=document.createElement('center');
 	let tabut=document.createElement("button");
@@ -333,7 +329,7 @@ function viewone(ip)
 	}
 	let ttbut=document.createElement("button");
 	ttbut.id="lbut";
-	ttbut.innerHTML="Tansaction history";
+	ttbut.innerHTML="Transaction history";
 	ttbut.onclick=function()
 	{
 		customers("viewt",ip);
@@ -358,7 +354,7 @@ function viewc(ip)
 	let h=document.createElement("h3");
 	h.innerHTML="Customers";
 	h.style.textAlign="center";
-	h.style.color="violet";
+	h.style.color="Violet";
 	content.appendChild(h);
 	let center=document.createElement("center");
 	for(i in ip)
@@ -372,8 +368,9 @@ function viewc(ip)
 			//alert(JSON.stringify(ip[temp]));
 			viewone(ip[temp]);
 		}
-		c.style.border="1px solid green";
-		c.style.backgroundColor="white";
+		c.style.border="1px solid blue";
+		c.style.backgroundColor="silver";
+		c.style.borderRadius='3%';
 		let name=document.createElement("h4");
 		name.innerHTML="Name: "+(ip[i].name);	
 		let bal=document.createElement("h5");
@@ -411,5 +408,5 @@ function dlt()
 function about()
 {
 
-	alert("Designed and developed by Bharathi Surjit Singh");
+	alert("Designed and developed by Bharathi Anand R");
 }

@@ -21,13 +21,13 @@ app
 	if (err)
 		throw err;
 	let dbo=db.db("WT");
-	dbo.collection("surjitbankc").drop();
- 	dbo.collection('surjitbankt').drop();
-	dbo.collection("surjitbankc").insert([{"name":"Surjit","bal":30500,"no":"XXXX2579","mail":"surjit@gmail.com"},{"name":"Rajesh","bal":30000,"no":"XXXX4592","mail":"rajesh@gmail.com"},{"name":"Surendhar","bal":10450,"no":"XXXX3789","mail":"surendhar@gmail.com"},{"name":"Siva","bal":20800,"no":"XXXX2894","mail":"siva@gmail.com"},{"name":"Akash","bal":23705,"no":"XXXX9876","mail":"akash@gmail.com"},{"name":"Sasi Kumar","bal":19700,"no":"XXXX6734","mail":"sasikumar@gmail.com"},{"name":"Gokul","bal":49000,"no":"XXXX2435","mail":"gokul@gmail.com"},{"name":"Indhu","bal":70000,"no":"XXXX6712","mail":"indhu@gmail.com"},{"name":"Priya","bal":15000,"no":"XXXX5673","mail":"priya@gmail.com"},{"name":"Karthik","bal":26700,"no":"XXXX4572","mail":"karthik@gmail.com"}],(err,result)=>            
+	dbo.collection("anandbankc").drop();
+ 	dbo.collection('anandbankt').drop();
+	dbo.collection("anandbankc").insert([{"name":"Anand","bal":30500,"no":"XXXX2579","mail":"anand@gmail.com"},{"name":"Rajesh","bal":30000,"no":"XXXX4592","mail":"rajesh@gmail.com"},{"name":"Surendhar","bal":10450,"no":"XXXX3789","mail":"surendhar@gmail.com"},{"name":"Siva","bal":20800,"no":"XXXX2894","mail":"siva@gmail.com"},{"name":"Akash","bal":23705,"no":"XXXX9876","mail":"akash@gmail.com"},{"name":"Sasi Kumar","bal":19700,"no":"XXXX6734","mail":"sasikumar@gmail.com"},{"name":"Gokul","bal":49000,"no":"XXXX2435","mail":"gokul@gmail.com"},{"name":"Madhu","bal":70000,"no":"XXXX6712","mail":"madhu@gmail.com"},{"name":"Priya","bal":15000,"no":"XXXX5673","mail":"priya@gmail.com"},{"name":"Kirthika","bal":26700,"no":"XXXX4572","mail":"kirthika@gmail.com"}],(err,result)=>            
 	{                                                 
 		console.log(result);
 	});
-	dbo.collection("surjitbankt").insert([{"mail":"surjit@gmail.com","t":[]},{"mail":"rajesh@gmail.com","t":[]},{"mail":"surendhar@gmail.com","t":[]},{"mail":"priya@gmail.com","t":[]},{"mail":"karthik@gmail.com","t":[]},{"mail":"siva@gmail.com","t":[]},{"mail":"akash@gmail.com","t":[]},{"mail":"sasikumar@gmail.com","t":[]},{"mail":"gokul@gmail.com","t":[]},{"mail":"indhu@gmail.com","t":[]}],(err,result)=>      
+	dbo.collection("anandbankt").insert([{"mail":"anand@gmail.com","t":[]},{"mail":"rajesh@gmail.com","t":[]},{"mail":"surendhar@gmail.com","t":[]},{"mail":"priya@gmail.com","t":[]},{"mail":"kirthika@gmail.com","t":[]},{"mail":"siva@gmail.com","t":[]},{"mail":"akash@gmail.com","t":[]},{"mail":"sasikumar@gmail.com","t":[]},{"mail":"gokul@gmail.com","t":[]},{"mail":"madhu@gmail.com","t":[]}],(err,result)=>      
 		{                                         
 			console.log(result);              
 		});
@@ -42,7 +42,7 @@ app.post('/viewt',(req,res)=>{
 			if (err)                          
 				throw err;            
 			let dbo=db.db("WT");     
-			dbo.collection("surjitbankt").findOne({mail:req.body.from.mail},(err,result)=>
+			dbo.collection("anandbankt").findOne({mail:req.body.from.mail},(err,result)=>
 				{
 					if(err)
 						throw err;
@@ -62,7 +62,7 @@ app.get('/viewc',(req,res)=>{
 			if (err)
 				throw err;
 			let dbo=db.db("WT");
-			dbo.collection("surjitbankc").find({}).toArray((err,result)=>             
+			dbo.collection("anandbankc").find({}).toArray((err,result)=>             
 				{                         
 					// console.log(result);
 					res.send(JSON.stringify(result));
@@ -80,7 +80,7 @@ app.post("/send",(req,res)=>{
 		let dbo=db.db("WT");
 		let amt=req.body.amt;
 		let bal1,bal2;
-		dbo.collection("surjitbankc").findOne({mail:req.body.from.mail},(err,result)=>{
+		dbo.collection("anandbankc").findOne({mail:req.body.from.mail},(err,result)=>{
 			if(err)
 				throw err;
 			else
@@ -89,7 +89,7 @@ app.post("/send",(req,res)=>{
 			//	console.log(bal1);                  
 			}
 		});
-		dbo.collection("surjitbankc").findOne({mail:req.body.to.mail},(err,result)=>{            
+		dbo.collection("anandbankc").findOne({mail:req.body.to.mail},(err,result)=>{            
 			if(err)                           
 				throw(err);                      
 			else     
@@ -107,20 +107,20 @@ app.post("/send",(req,res)=>{
 				bal2+=amt;
 			}
 			let query={mail:req.body.from.mail};                       let update={$push:{"t":{mail:req.body.to.mail,p:req.body.to.name,amt:amt,type:"Debited",time:Date()}}};
-			dbo.collection("surjitbankt").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);
+			dbo.collection("anandbankt").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);
 				//else                                                              console.log(result);
 			});
 			query={mail:req.body.to.mail};                             update={$push:{"t":{mail:req.body.from.mail,p:req.body.from.name,amt:amt,type:"Credited",time:Date()}}};
-			dbo.collection("surjitbankt").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);
+			dbo.collection("anandbankt").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);
 				//else                                                               console.log(result);                   
 			});
 			query={mail:req.body.from.mail};                           update={$set:{"bal":bal1}};
-			dbo.collection("surjitbankc").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);
+			dbo.collection("anandbankc").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);
 				//else                                                               console.log(result);                   
 			});
 			query={mail:req.body.to.mail};
 			update={$set:{"bal":bal2}};
-			dbo.collection("surjitbankc").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);       
+			dbo.collection("anandbankc").updateOne(query,update,(err,result)=>{                                                                if(err)                                                            throw(err);       
 				//else            
 				//console.log(result);                   
 			});
