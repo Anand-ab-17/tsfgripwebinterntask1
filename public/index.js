@@ -408,5 +408,5 @@ function dlt()
 function about()
 {
 
-	alert("Designed and developed by Bharathi Anand R");
+	alert("Designed and developed by Anand R");
 }
